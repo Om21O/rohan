@@ -1,4 +1,4 @@
-import PricingPage from '../../../components/PricingPage.js';
+import PricingPage from '../../../components/PricingPage.tsx';
 export default function Pricing() {
   return <PricingPage />;
 }
