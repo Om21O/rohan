@@ -75,8 +75,8 @@ const PricingPage = () => {
     key={index}
     className={`relative p-8 rounded-2xl shadow-md flex flex-col transition-all duration-300
       ${plan.title === 'Pro'
-        ? 'bg-gradient-to-t from-orange-500/20 via-[#1a1a1a] to-black border border-orange-500'
-        : 'bg-black border border-gray-800'
+        ? 'bg-gradient-to-t from-orange-500/20 via-[#1a1a1a] to-black border border-[#EA580C]'
+        : 'bg-[#171717] border border-[#212121]'
       }
     `}
             >
