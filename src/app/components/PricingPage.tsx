@@ -112,16 +112,16 @@ const PricingPage: React.FC = () => {
                 </ul>
 
                 <button
-                  disabled={plan.isCurrent}
-                  className={`w-full py-3 rounded-full text-sm font-semibold 
-                    border border-gray-600
-                    ${plan.isCurrent
-                      ? "bg-[#1a1a1a] text-gray-400 cursor-not-allowed"
-                      : "bg-gradient-to-b from-[#222] to-[#111] hover:from-[#333] hover:to-[#222] active:brightness-90"
-                    } transition-all`}
-                >
-                  {plan.buttonText}
-                </button>
+  disabled={plan.isCurrent}
+  className={`w-full py-3 rounded-full text-sm font-semibold border transition-all duration-300 ${
+    plan.isCurrent
+      ? "border-[#333] text-gray-500 bg-[#111] opacity-50 cursor-not-allowed"
+      : "border-[#444] bg-gradient-to-b from-[#1c1c1c] to-[#111] backdrop-blur-md shadow-inner shadow-black/40 hover:from-[#2a2a2a] hover:to-[#1a1a1a] hover:brightness-110 active:scale-95 active:brightness-90"
+  }`}
+>
+  {plan.buttonText}
+</button>
+
               </div>
             </div>
           ))}
