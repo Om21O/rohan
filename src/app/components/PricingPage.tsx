@@ -79,42 +79,50 @@ const PricingPage: React.FC = () => {
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`relative p-8 rounded-2xl shadow-md flex flex-col transition-all duration-300
-                ${plan.title === "Pro"
-                  ? "bg-gradient-to-t from-orange-500/20 via-[#1a1a1a] to-black border border-[#EA580C]"
-                  : "bg-[#171717] border border-[#212121]"
+              className={`relative p-8 rounded-2xl shadow-md flex flex-col transition-all duration-300 overflow-hidden
+                ${plan.title === 'Pro'
+                  ? 'border border-[#EA580C] bg-[#0F0F0F]'
+                  : 'bg-[#171717] border border-[#212121]'
                 }
               `}
             >
-              <h2 className="text-2xl font-bold mb-2">{plan.title}</h2>
-              <p className="text-4xl font-bold mb-1">{plan.price}</p>
-              <p className="text-gray-400 text-xs mb-6">
-                per month, billed annually
-              </p>
-              <p className="text-gray-400 mb-6 text-sm">{plan.description}</p>
+              {/* Gradient background for Pro */}
+              {plan.title === "Pro" && (
+                <div className="absolute inset-0 bg-gradient-to-b from-[#0F0F0F] to-[#EA580C] opacity-20 pointer-events-none rounded-2xl" />
+              )}
 
-              <ul className="space-y-4 mb-6 flex-1">
-                {plan.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center space-x-3">
-                    <div className="w-6 h-6 rounded-md bg-[#212121] flex items-center justify-center">
-                      <Check className="text-white w-4 h-4" strokeWidth={3} />
-                    </div>
-                    <span className="text-sm">{feature}</span>
-                  </li>
-                ))}
-              </ul>
+              {/* Main content */}
+              <div className="relative z-10 flex flex-col h-full">
+                <h2 className="text-2xl font-bold mb-2">{plan.title}</h2>
+                <p className="text-4xl font-bold mb-1">{plan.price}</p>
+                <p className="text-gray-400 text-xs mb-6">
+                  per month, billed annually
+                </p>
+                <p className="text-gray-400 mb-6 text-sm">{plan.description}</p>
 
-              <button
-                disabled={plan.isCurrent}
-                className={`w-full py-3 rounded-full text-sm font-semibold 
-                  border border-gray-600
-                  ${plan.isCurrent
-                    ? "bg-[#1a1a1a] text-gray-400 cursor-not-allowed"
-                    : "bg-gradient-to-b from-[#222] to-[#111] hover:from-[#333] hover:to-[#222] active:brightness-90"
-                  } transition-all`}
-              >
-                {plan.buttonText}
-              </button>
+                <ul className="space-y-4 mb-6 flex-1">
+                  {plan.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center space-x-3">
+                      <div className="w-6 h-6 rounded-md bg-[#212121] flex items-center justify-center">
+                        <Check className="text-white w-4 h-4" strokeWidth={3} />
+                      </div>
+                      <span className="text-sm">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <button
+                  disabled={plan.isCurrent}
+                  className={`w-full py-3 rounded-full text-sm font-semibold 
+                    border border-gray-600
+                    ${plan.isCurrent
+                      ? "bg-[#1a1a1a] text-gray-400 cursor-not-allowed"
+                      : "bg-gradient-to-b from-[#222] to-[#111] hover:from-[#333] hover:to-[#222] active:brightness-90"
+                    } transition-all`}
+                >
+                  {plan.buttonText}
+                </button>
+              </div>
             </div>
           ))}
         </div>
