@@ -1,57 +1,99 @@
-'use client';
-import React from 'react';
+"use client";
 
-const PricingSection = () => {
-  const plans = [
-    {
-      title: 'Starter',
-      price: '$0',
-      description: 'For casual users',
-      features: ['20 prompts per day', 'Automatic data enrichment', 'Up to 3 seats'],
-    },
-    {
-      title: 'Pro',
-      price: '$20',
-      description: 'For pro users',
-      features: ['Everything in starter', 'Unlimited prompts per day', 'Early access to new features', 'Priority access during peak hours'],
-    },
-  ];
+import React from "react";
+import { Check } from "lucide-react";
 
+interface Plan {
+  title: string;
+  price: string;
+  description: string;
+  features: string[];
+  buttonText: string;
+}
+
+const plans: Plan[] = [
+  {
+    title: "Starter",
+    price: "$0",
+    description: "For casual users",
+    features: ["20 prompts per day", "Automatic data enrichment", "Up to 3 seats"],
+    buttonText: "Get Started",
+  },
+  {
+    title: "Pro",
+    price: "$20",
+    description: "For pro users",
+    features: [
+      "Everything in starter",
+      "Unlimited prompts per day",
+      "Early access to new features",
+      "Priority access during peak hours",
+    ],
+    buttonText: "Get Started",
+  },
+];
+
+const PricingPage: React.FC = () => {
   return (
-    <section className="bg-black py-20 text-center">
-      <div className="mb-16 px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Pricing</h2>
-        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-          Whether you need quick answers or in-depth research, Scira adapts to your search needs.
-        </p>
-      </div>
+    <div className="bg-black text-white min-h-screen flex flex-col items-center px-6 py-12">
+      
+      {/* Heading */}
+      <h1 className="text-4xl font-bold mb-4">Pricing</h1>
+      <p className="text-gray-400 text-center mb-10">
+        Whether you need quick answers or in-depth research,<br />
+        Scira adapts to your search needs.
+      </p>
 
-      <div className="flex flex-col md:flex-row justify-center items-stretch gap-10 px-4">
-        {plans.map((plan, idx) => (
-          <div key={idx} className="relative group w-full max-w-sm rounded-2xl overflow-hidden bg-[#111827] border border-[#1f2937] p-8 transition-all duration-500 hover:border-orange-400 hover:shadow-[0_0_10px_2px_rgba(255,165,0,0.4)]">
+      {/* Pricing Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full">
+        {plans.map((plan, index) => (
+          <div
+            key={index}
+            className={`relative p-8 rounded-2xl flex flex-col overflow-hidden border ${
+              plan.title === "Pro"
+                ? "border-orange-500 bg-[#0f0f0f]"
+                : "border-[#212121] bg-[#111]"
+            }`}
+          >
+            {/* Orange gradient for Pro plan */}
+            {plan.title === "Pro" && (
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-orange-900/20 pointer-events-none rounded-2xl" />
+            )}
+
+            {/* Card Content */}
             <div className="relative z-10 flex flex-col h-full">
-              <div className="flex-grow">
-                <h3 className="text-2xl font-bold text-white mb-4">{plan.title}</h3>
-                <div className="text-4xl font-bold text-white mb-2">{plan.price}</div>
-                <div className="text-sm text-gray-400 mb-6">per month, billed annually</div>
-                <p className="text-gray-400 mb-6">{plan.description}</p>
-                <ul className="space-y-4 mb-8 text-white">
-                  {plan.features.map((feature, fIdx) => (
-                    <li key={fIdx} className="flex items-center">
-                      <span className="w-5 h-5 mr-2 text-blue-400">✔️</span> {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <button className="w-full py-3 bg-[#1f2937] text-white font-semibold rounded-full transition-all duration-300 hover:bg-gradient-to-r hover:from-orange-400 hover:to-orange-500">
-                Get started
+              <h2 className="text-2xl font-bold mb-2">{plan.title}</h2>
+              <p className="text-4xl font-bold mb-1">{plan.price}</p>
+              <p className="text-gray-400 text-xs mb-6">
+                per month, billed annually
+              </p>
+              <p className="text-gray-400 mb-6 text-sm">{plan.description}</p>
+
+              {/* Features List */}
+              <ul className="space-y-4 mb-6 flex-1">
+                {plan.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-center space-x-3">
+                    <div className="w-6 h-6 rounded-md bg-[#212121] flex items-center justify-center">
+                      <Check className="text-white w-4 h-4" strokeWidth={3} />
+                    </div>
+                    <span className="text-sm">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Button */}
+              <button
+                className="w-full py-3 rounded-full text-sm font-semibold border border-[#333] bg-[#1a1a1a] hover:bg-[#2a2a2a] active:brightness-90 transition-all duration-300"
+              >
+                {plan.buttonText}
               </button>
             </div>
           </div>
         ))}
       </div>
-    </section>
+
+    </div>
   );
 };
 
-export default PricingSection;
+export default PricingPage;
