@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { ArrowUp } from 'lucide-react';
 import Image from 'next/image';
 
 const SearchBarSection: React.FC = () => {
@@ -42,16 +43,7 @@ const SearchBarSection: React.FC = () => {
             className="flex-grow bg-transparent outline-none text-white placeholder-gray-400 px-2"
           />
           <button className="w-10 h-10 rounded-full bg-[#1a1a1a] border border-[#3a3a3a] shadow-[0_0_6px_rgba(255,255,255,0.2)_inset] flex items-center justify-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
-            </svg>
+            <ArrowUp className="w-4 h-4 text-white" />
           </button>
         </div>
 
